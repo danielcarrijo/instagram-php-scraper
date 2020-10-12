@@ -3,12 +3,13 @@
 namespace InstagramScraper\Model;
 
 use InstagramScraper\Endpoints;
+use JsonSerializable;
 
 /**
  * Class Media
  * @package InstagramScraper\Model
  */
-class Media extends AbstractModel
+class Media extends AbstractModel implements JsonSerializable
 {
     const TYPE_IMAGE = 'image';
     const TYPE_VIDEO = 'video';
@@ -773,5 +774,9 @@ class Media extends AbstractModel
     public function getOwner()
     {
         return $this->owner;
+    }
+
+    public function jsonSerialize() {
+        return (object) get_object_vars($this);
     }
 }
